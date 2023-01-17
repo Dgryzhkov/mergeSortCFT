@@ -1,9 +1,9 @@
 package org.example.command_line;
 
 import org.example.command_line.help.Help;
+import org.example.options.Options;
 import org.example.options.params_input.DataType;
 import org.example.options.params_input.TypeSort;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
 public class ParseUserInputImpl {
     private static final int REQUIRED_NUMBER_OF_ARGS = 3;
 
-    @Override
     public Options parseInput(String[] inputArgs) {
         if (inputArgs.length < 1) {
             Help.displayCommandHelp();
@@ -57,7 +56,6 @@ public class ParseUserInputImpl {
         return new OptionsImpl(inputFiles, dataType, typeSort, outputFile);
 
     }
-
 
     public static void checkUserInput() {
 
