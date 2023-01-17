@@ -1,6 +1,8 @@
 package org.example.command_line;
 
 import org.example.command_line.help.Help;
+import org.example.options.params_input.DataType;
+import org.example.options.params_input.TypeSort;
 
 import java.io.File;
 import java.util.ArrayList;
