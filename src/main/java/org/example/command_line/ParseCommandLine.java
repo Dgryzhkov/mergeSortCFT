@@ -5,6 +5,6 @@ import org.example.options.Options;
 /**
  * @Author Dgryzhkov
  */
-public interface ParseUserInput {
-    Options parseInput(String[] args);
+public interface ParseCommandLine {
+    Options parse(String[] args);
 }

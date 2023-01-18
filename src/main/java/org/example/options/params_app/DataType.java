@@ -1,4 +1,4 @@
-package org.example.options.params_input;
+package org.example.options.params_app;
 
 /**
  * @Author Dgryzhkov

@@ -1,7 +1,6 @@
 package org.example.merge;
 
 import org.example.exceptions.IncorrectlySortedFileException;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,34 +11,33 @@ import java.util.Optional;
  * @Author Dgryzhkov
  */
 public class MergeFiles<T extends Comparable<T>> {
-    ReadersQueue<T> readersQueue;
+    private final ReadersQueue<T> readersQueue;
 
     public MergeFiles(ReadersQueue<T> readersQueue){
         this.readersQueue = readersQueue;
     }
 
     public void mergeSortedFiles(File output){
-
         try (BufferedWriter outputBufferedWriter = new BufferedWriter(new FileWriter(output))) {
-            while (!readersQueue.isEmpty()) {
 
+            while (!readersQueue.isEmpty()) {
                 try {
+
                     Optional<T> optionalElement = readersQueue.getMinMaxElement();
                     if (optionalElement.isPresent()){
                         T minMaxElement = optionalElement.get();
-                        //System.out.println(minMaxElement);
-                        outputBufferedWriter.write(minMaxElement.toString() + System.lineSeparator()); //int
+                        outputBufferedWriter.write(minMaxElement.toString() + System.lineSeparator());
                         readersQueue.setPreviousLineInFile(minMaxElement);
                     }
+
                 } catch (IncorrectlySortedFileException e) {
-                    System.out.println(e.getMessage() + e.getLine());
-
+                    System.err.println(String.format("Файл %s: %s %s", e.getFileName(), e.getMessage(), e.getLine()));
                 }
-
             }
 
         } catch(IOException ex){
-            ex.printStackTrace();
+            System.err.println("Не удалась запись в файл " + output.getName());
         }
+
     }
 }
